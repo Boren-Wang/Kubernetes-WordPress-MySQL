@@ -31,6 +31,13 @@ spec:
               key: mysql-root-password
         - name: WORDPRESS_DEBUG
           value: "1"
+        volumeMounts:
+        - name: wordpress-persistent-storage
+          mountPath: /var/www/html
+      volumes: 
+      - name: wordpress-persistent-storage
+        persistentVolumeClaim:
+          claimName: wp-pv-claim
 ---
 apiVersion: v1
 kind: Service
